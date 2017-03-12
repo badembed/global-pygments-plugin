@@ -86,7 +86,10 @@ class PygmentsParser:
                     if self.options.strip_punctuation:
                         tag = tag.strip(PUNCTUATION_CHARACTERS)
                     if tag:
-                        result[(False, tag, cur_line + 1)] = ''
+                        if(tokentype == Token.Name.Function):
+                            result[(True, tag, cur_line + 1)] = ''
+                        else:
+                            result[(False, tag, cur_line + 1)] = ''
             return result
 
     def __init__(self, langmap, options):
